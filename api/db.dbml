@@ -1,0 +1,199 @@
+Project LanguageClub {
+  database_type: "PostgreSQL"
+}
+
+Table ProgramTemplate {
+  id uuid [pk]
+  lang varchar
+  created_by uuid [ref: > Account.id]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table EventTemplate {
+  id uuid [pk]
+  program_id uuid [ref: > ProgramTemplate.id]
+  type varchar
+  type_entity_id uuid
+  start_at timestamp
+  duration int
+  created_by uuid [ref: > Account.id]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table TopicTemplate {
+  id uuid [pk]
+  name varchar
+  description text
+  links text[]
+  attachments text[]
+  content text
+  vocab_items text[]
+  created_by uuid [ref: > Account.id]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table TaskTemplate {
+  id uuid [pk, ref: < EventTemplate.type_entity_id]
+  topic_id uuid [ref: > TopicTemplate.id]
+  name varchar
+  description text
+  content text
+  attachments text[]
+  created_by uuid [ref: > Account.id]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table VoteTemplate {
+  id uuid [pk, ref: < EventTemplate.type_entity_id]
+  topic_ids uuid[] [ref: > TopicTemplate.id]
+  closing_datetime timestamp
+  votes json
+  created_by uuid [ref: > Account.id]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table Event {
+  id uuid [pk]
+  type varchar
+  type_entity_id uuid
+  start_at timestamp
+  program_id uuid [ref: > Program.id]
+  duration int
+  created_by uuid [ref: > Account.id]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table Program {
+  id uuid [pk]
+  lang varchar
+  created_by uuid [ref: > Account.id]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table Club {
+  id uuid [pk]
+  name varchar
+  description text
+  logo text
+  rules text
+  language varchar
+  program_id uuid [ref: - Program.id]
+  categories varchar[]
+  time_zone varchar
+  is_public boolean
+  invite_code varchar
+  created_by uuid [ref: - Account.id]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table ClubMembership {
+  id uuid [pk]
+  account_id uuid [ref: > Account.id]
+  club_id uuid [ref: > Club.id]
+  role varchar
+  joined_at timestamp
+  active boolean
+}
+
+Table LangLevel {
+  account_id uuid [ref: > Account.id]
+  lang varchar
+  level varchar
+  updated_at timestamp
+  source varchar
+  Note: "Composite key (account_id, lang)"
+}
+
+Table Account {
+  id uuid [pk]
+  name varchar
+  avatar text
+  email varchar
+  access_token text
+  refresh_token text
+  verified boolean
+  last_login_at timestamp
+  pass_hash text
+  lang_level_ids text[]
+}
+
+Table Device {
+  id uuid [pk]
+  account_id uuid [ref: > Account.id]
+  color_theme varchar
+  settings json
+}
+
+Table Topic {
+  id uuid [pk]
+  name varchar
+  description text
+  links text[]
+  attachments text[]
+  content text
+  vocab_items text[]
+  created_by uuid [ref: > Account.id]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table Task {
+  id uuid [pk, ref: < Event.type_entity_id]
+  topic_id uuid [ref: > Topic.id]
+  name varchar
+  description text
+  content text
+  attachments text[]
+  created_by uuid [ref: > Account.id]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table Vote {
+  id uuid [pk, ref: < Event.type_entity_id]
+  topic_ids uuid[] [ref: > Topic.id]
+  closing_datetime timestamp
+  votes json
+  created_by uuid [ref: > Account.id]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table Meeting {
+  id uuid [pk, ref: < Event.type_entity_id]
+  topic_ids uuid[] [ref: > Topic.id]
+  start_at timestamp
+  duration int
+  preparation_task_id uuid [ref: > Task.id]
+  links text[]
+  vocab text[]
+  video_meeting_link text
+  created_by uuid [ref: > Account.id]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table Session {
+  id uuid [pk]
+  duration int
+  group_size int
+  task_id uuid [ref: > Task.id]
+  meeting_id uuid [ref: > Meeting.id]
+}
+
+Table Group {
+  id uuid [pk]
+  label varchar
+  account_ids uuid [ref: <> Account.id]
+  session_id uuid [ref: > Session.id]
+  formed_at timestamp
+  auto_assigned boolean
+}

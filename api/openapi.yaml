@@ -1,0 +1,1529 @@
+openapi: 3.1.1
+info:
+  title: Language Club API
+  version: 1.0.0
+paths:
+  /v1/programs:
+    get:
+      summary: List all programs
+      responses:
+        '200':
+          description: List of programs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Program'
+    post:
+      summary: Create a new Program
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Program'
+      responses:
+        '201':
+          description: Program created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Program'
+  /v1/programs/{id}:
+    get:
+      summary: Get a specific Program
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Program details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Program'
+        '404':
+          description: Program not found
+    put:
+      summary: Update a specific Program
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Program'
+      responses:
+        '200':
+          description: Program updated
+        '404':
+          description: Program not found
+    delete:
+      summary: Delete a specific Program
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Program deleted
+        '404':
+          description: Program not found
+  /v1/events:
+    get:
+      summary: List all events
+      responses:
+        '200':
+          description: List of events
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+    post:
+      summary: Create a new Event
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+      responses:
+        '201':
+          description: Event created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+  /v1/events/{id}:
+    get:
+      summary: Get a specific Event
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Event details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '404':
+          description: Event not found
+    put:
+      summary: Update a specific Event
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+      responses:
+        '200':
+          description: Event updated
+        '404':
+          description: Event not found
+    delete:
+      summary: Delete a specific Event
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Event deleted
+        '404':
+          description: Event not found
+  /v1/clubs:
+    get:
+      summary: List all clubs
+      responses:
+        '200':
+          description: List of clubs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Club'
+    post:
+      summary: Create a new Club
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Club'
+      responses:
+        '201':
+          description: Club created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Club'
+  /v1/clubs/{id}:
+    get:
+      summary: Get a specific Club
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Club details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Club'
+        '404':
+          description: Club not found
+    put:
+      summary: Update a specific Club
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Club'
+      responses:
+        '200':
+          description: Club updated
+        '404':
+          description: Club not found
+    delete:
+      summary: Delete a specific Club
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Club deleted
+        '404':
+          description: Club not found
+  /v1/clubmemberships:
+    get:
+      summary: List all clubmemberships
+      responses:
+        '200':
+          description: List of clubmemberships
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClubMembership'
+    post:
+      summary: Create a new ClubMembership
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClubMembership'
+      responses:
+        '201':
+          description: ClubMembership created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClubMembership'
+  /v1/clubmemberships/{id}:
+    get:
+      summary: Get a specific ClubMembership
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ClubMembership details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClubMembership'
+        '404':
+          description: ClubMembership not found
+    put:
+      summary: Update a specific ClubMembership
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClubMembership'
+      responses:
+        '200':
+          description: ClubMembership updated
+        '404':
+          description: ClubMembership not found
+    delete:
+      summary: Delete a specific ClubMembership
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ClubMembership deleted
+        '404':
+          description: ClubMembership not found
+  /v1/langlevels:
+    get:
+      summary: List all langlevels
+      responses:
+        '200':
+          description: List of langlevels
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LangLevel'
+    post:
+      summary: Create a new LangLevel
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LangLevel'
+      responses:
+        '201':
+          description: LangLevel created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LangLevel'
+  /v1/langlevels/{id}:
+    get:
+      summary: Get a specific LangLevel
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: LangLevel details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LangLevel'
+        '404':
+          description: LangLevel not found
+    put:
+      summary: Update a specific LangLevel
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LangLevel'
+      responses:
+        '200':
+          description: LangLevel updated
+        '404':
+          description: LangLevel not found
+    delete:
+      summary: Delete a specific LangLevel
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: LangLevel deleted
+        '404':
+          description: LangLevel not found
+  /v1/accounts:
+    get:
+      summary: List all accounts
+      responses:
+        '200':
+          description: List of accounts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Account'
+    post:
+      summary: Create a new Account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Account'
+      responses:
+        '201':
+          description: Account created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+  /v1/accounts/{id}:
+    get:
+      summary: Get a specific Account
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Account details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+        '404':
+          description: Account not found
+    put:
+      summary: Update a specific Account
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Account'
+      responses:
+        '200':
+          description: Account updated
+        '404':
+          description: Account not found
+    delete:
+      summary: Delete a specific Account
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Account deleted
+        '404':
+          description: Account not found
+  /v1/accounts/{id}/data:
+    get:
+      summary: Get all data for a specific Account
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: All data for the account
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '404':
+          description: Account not found
+  /v1/accounts/{id}/langlevels:
+    get:
+      summary: List all langlevels for a specific Account
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of langlevels for the account
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LangLevel'
+  /v1/accounts/{id}/devices:
+    get:
+      summary: List all devices for a specific Account
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of devices for the account
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Device'
+  /v1/accounts/{id}/topics:
+    get:
+      summary: List all topics for a specific Account
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of topics for the account
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Topic'
+  /v1/accounts/{id}/tasks:
+    get:
+      summary: List all tasks for a specific Account
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of tasks for the account
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Task'
+  /v1/accounts/{id}/clubs:
+    get:
+      summary: List all clubs for a specific Account
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of clubs for the account
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Club'
+  /v1/devices:
+    get:
+      summary: List all devices
+      responses:
+        '200':
+          description: List of devices
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Device'
+    post:
+      summary: Create a new Device
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Device'
+      responses:
+        '201':
+          description: Device created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device'
+  /v1/devices/{id}:
+    get:
+      summary: Get a specific Device
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Device details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device'
+        '404':
+          description: Device not found
+    put:
+      summary: Update a specific Device
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Device'
+      responses:
+        '200':
+          description: Device updated
+        '404':
+          description: Device not found
+    delete:
+      summary: Delete a specific Device
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Device deleted
+        '404':
+          description: Device not found
+  /v1/topics:
+    get:
+      summary: List all topics
+      responses:
+        '200':
+          description: List of topics
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Topic'
+    post:
+      summary: Create a new Topic
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Topic'
+      responses:
+        '201':
+          description: Topic created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Topic'
+  /v1/topics/{id}:
+    get:
+      summary: Get a specific Topic
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Topic details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Topic'
+        '404':
+          description: Topic not found
+    put:
+      summary: Update a specific Topic
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Topic'
+      responses:
+        '200':
+          description: Topic updated
+        '404':
+          description: Topic not found
+    delete:
+      summary: Delete a specific Topic
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Topic deleted
+        '404':
+          description: Topic not found
+  /v1/tasks:
+    get:
+      summary: List all tasks
+      responses:
+        '200':
+          description: List of tasks
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Task'
+    post:
+      summary: Create a new Task
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Task'
+      responses:
+        '201':
+          description: Task created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+  /v1/tasks/{id}:
+    get:
+      summary: Get a specific Task
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Task details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '404':
+          description: Task not found
+    put:
+      summary: Update a specific Task
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Task'
+      responses:
+        '200':
+          description: Task updated
+        '404':
+          description: Task not found
+    delete:
+      summary: Delete a specific Task
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Task deleted
+        '404':
+          description: Task not found
+  /v1/votes:
+    get:
+      summary: List all votes
+      responses:
+        '200':
+          description: List of votes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Vote'
+    post:
+      summary: Create a new Vote
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Vote'
+      responses:
+        '201':
+          description: Vote created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vote'
+  /v1/votes/{id}:
+    get:
+      summary: Get a specific Vote
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Vote details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vote'
+        '404':
+          description: Vote not found
+    put:
+      summary: Update a specific Vote
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Vote'
+      responses:
+        '200':
+          description: Vote updated
+        '404':
+          description: Vote not found
+    delete:
+      summary: Delete a specific Vote
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Vote deleted
+        '404':
+          description: Vote not found
+  /v1/meetings:
+    get:
+      summary: List all meetings
+      responses:
+        '200':
+          description: List of meetings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Meeting'
+    post:
+      summary: Create a new Meeting
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Meeting'
+      responses:
+        '201':
+          description: Meeting created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Meeting'
+  /v1/meetings/{id}:
+    get:
+      summary: Get a specific Meeting
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Meeting details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Meeting'
+        '404':
+          description: Meeting not found
+    put:
+      summary: Update a specific Meeting
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Meeting'
+      responses:
+        '200':
+          description: Meeting updated
+        '404':
+          description: Meeting not found
+    delete:
+      summary: Delete a specific Meeting
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Meeting deleted
+        '404':
+          description: Meeting not found
+  /v1/sessions:
+    get:
+      summary: List all sessions
+      responses:
+        '200':
+          description: List of sessions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Session'
+    post:
+      summary: Create a new Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Session'
+      responses:
+        '201':
+          description: Session created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Session'
+  /v1/sessions/{id}:
+    get:
+      summary: Get a specific Session
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Session details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Session'
+        '404':
+          description: Session not found
+    put:
+      summary: Update a specific Session
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Session'
+      responses:
+        '200':
+          description: Session updated
+        '404':
+          description: Session not found
+    delete:
+      summary: Delete a specific Session
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Session deleted
+        '404':
+          description: Session not found
+  /v1/groups:
+    get:
+      summary: List all groups
+      responses:
+        '200':
+          description: List of groups
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Group'
+    post:
+      summary: Create a new Group
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Group'
+      responses:
+        '201':
+          description: Group created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+  /v1/groups/{id}:
+    get:
+      summary: Get a specific Group
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Group details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '404':
+          description: Group not found
+    put:
+      summary: Update a specific Group
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Group'
+      responses:
+        '200':
+          description: Group updated
+        '404':
+          description: Group not found
+    delete:
+      summary: Delete a specific Group
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Group deleted
+        '404':
+          description: Group not found
+components:
+  schemas:
+    Program:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        event_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+        lang:
+          type: string
+        created_by:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - lang
+      - created_by
+      - created_at
+      - updated_at
+    Event:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        type:
+          type: string
+          enum:
+          - vote
+          - meeting
+          - task
+        type_entity_id:
+          type: string
+          format: uuid
+        start_at:
+          type: string
+          format: date-time
+        duration:
+          type: integer
+        created_by:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - type
+      - type_entity_id
+      - start_at
+      - created_by
+      - created_at
+      - updated_at
+    Club:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        logo:
+          type: string
+        rules:
+          type: string
+        language:
+          type: string
+        event_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+        categories:
+          type: array
+          items:
+            type: string
+        time_zone:
+          type: string
+        is_public:
+          type: boolean
+        invite_code:
+          type: string
+        created_by:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - name
+      - language
+      - created_by
+      - created_at
+      - updated_at
+    ClubMembership:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        account_id:
+          type: string
+          format: uuid
+        club_id:
+          type: string
+          format: uuid
+        role:
+          type: string
+          enum:
+          - admin
+          - participant
+          - native lang helper
+        joined_at:
+          type: string
+          format: date-time
+        active:
+          type: boolean
+      required:
+      - id
+      - account_id
+      - club_id
+      - role
+      - joined_at
+      - active
+    LangLevel:
+      type: object
+      properties:
+        account_id:
+          type: string
+          format: uuid
+        lang:
+          type: string
+        level:
+          type: string
+        updated_at:
+          type: string
+          format: date-time
+        source:
+          type: string
+      required:
+      - account_id
+      - lang
+      - level
+      - updated_at
+    Account:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        avatar:
+          type: string
+        email:
+          type: string
+          format: email
+        access_token:
+          type: string
+        refresh_token:
+          type: string
+        verified:
+          type: boolean
+        last_login_at:
+          type: string
+          format: date-time
+        pass_hash:
+          type: string
+        device_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+        lang_level_ids:
+          type: array
+          items:
+            type: string
+      required:
+      - id
+      - email
+      - pass_hash
+      - verified
+    Device:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        color_theme:
+          type: string
+        settings:
+          type: object
+      required:
+      - id
+    Topic:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        links:
+          type: array
+          items:
+            type: string
+        attachments:
+          type: array
+          items:
+            type: string
+        content:
+          type: string
+        vocab_items:
+          type: array
+          items:
+            type: string
+        created_by:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - name
+      - created_by
+      - created_at
+      - updated_at
+    Task:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        topic_id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        content:
+          type: string
+        attachments:
+          type: array
+          items:
+            type: string
+        created_by:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - name
+      - created_by
+      - created_at
+      - updated_at
+    Vote:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        topic_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+        closing_datetime:
+          type: string
+          format: date-time
+        votes:
+          type: object
+        created_by:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - topic_ids
+      - created_by
+      - created_at
+      - updated_at
+    Meeting:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        topic_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+        start_at:
+          type: string
+          format: date-time
+        duration:
+          type: integer
+        session_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+        preparation_task_id:
+          type: string
+          format: uuid
+        links:
+          type: array
+          items:
+            type: string
+        vocab:
+          type: array
+          items:
+            type: string
+        video_meeting_link:
+          type: string
+        created_by:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - start_at
+      - created_by
+      - created_at
+      - updated_at
+    Session:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        duration:
+          type: integer
+        group_size:
+          type: integer
+        task_id:
+          type: string
+          format: uuid
+        meeting_id:
+          type: string
+          format: uuid
+      required:
+      - id
+      - duration
+      - task_id
+    Group:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        label:
+          type: string
+        account_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+        session_id:
+          type: string
+          format: uuid
+        formed_at:
+          type: string
+          format: date-time
+        auto_assigned:
+          type: boolean
+      required:
+      - id
+      - account_ids
+      - session_id
+      - formed_at
+      - auto_assigned
