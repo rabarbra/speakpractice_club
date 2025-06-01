@@ -7,6 +7,8 @@ information, used to generate OpenAPI documentation.
 
 from blacksheep import Application
 from blacksheep.server.openapi.v3 import OpenAPIHandler
+from blacksheep.server.openapi.ui import ReDocUIProvider, ScalarUIProvider
+
 from openapidocs.v3 import Info
 
 from app.docs.binders import set_binders_docs
@@ -24,4 +26,5 @@ def configure_docs(app: Application, settings: Settings):
 
     set_binders_docs(docs)
 
+    docs.ui_providers.append(ScalarUIProvider())
     docs.bind_app(app)

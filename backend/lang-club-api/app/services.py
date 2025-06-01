@@ -14,10 +14,14 @@ from rodi import Container
 
 from app.settings import Settings, load_settings
 
+from domain.account import AccountService, AccountRepository
+
 
 def configure_services() -> Tuple[Container, Settings]:
     container = Container()
     settings = load_settings()
 
     container.add_instance(settings)
+    container.add_transient(AccountService)
+    container.add_transient(AccountRepository)
     return container, settings
